@@ -7,9 +7,7 @@ int main()
     std::cout << "Today, I change that." << std::endl;
 
     // Declare a 3 number code
-    int CodeA = 4;
-    int CodeB = 5;
-    int CodeC = 7;
+    int CodeA = 4, CodeB = 5, CodeC = 7;
 
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
@@ -20,9 +18,15 @@ int main()
     std::cout << "The codes multiply to give: " << CodeProduct << std::endl;
 
     int PlayerGuess;
+    int GuessA, GuessB, GuessC;
 
-    std::cin >> PlayerGuess;
-    std::cout << "Your guess is: " << PlayerGuess;
+    std::cout << "Please enter your guess below using a space between each digit e.g X X X.";
+    std::cin >> GuessA;
+    std::cin >> GuessB;
+    std::cin >> GuessC;
+
+    int GuessSum = GuessA + GuessB + GuessC;
+    int GuessProduct = GuessA * GuessB * GuessC;
     
     return 0;
 }
