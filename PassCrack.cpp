@@ -20,6 +20,9 @@ int main()
     std::cout << "The codes multiply to give: " << CodeProduct << std::endl;
 
     int PlayerGuess;
+
+    std::cin >> PlayerGuess;
+    std::cout << "Your guess is: " << PlayerGuess;
     
     return 0;
 }
