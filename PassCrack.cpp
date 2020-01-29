@@ -1,16 +1,20 @@
 #include <iostream>
+#include <ctime>
 
-void PrintIntroduction()
+void PrintIntroduction(int Difficulty)
 {
     // print introduction messages to terminal
-    std::cout << "This is the fifth day now that Jimmy has beaten me at cracking top secret forgotten account passwords.\n";
-    std::cout << "Today, I change that.\n";
+    std::cout << "Today is the day! Maybe I can finally get my promotion with flawless performance.";
+    std::cout << "\nAs always with the start of the day I need to start at the bottom at level " << Difficulty << " password solving.";
+    std::cout << "\nAh, here comes the call!\n";
 }
 
-void PlayGame()
+bool PlayGame(int Difficulty)
 {
+    PrintIntroduction(Difficulty);
+    
     // Declare a 3 number code
-    int CodeA = 4, CodeB = 5, CodeC = 7;
+    int CodeA = rand() % Difficulty + Difficulty, CodeB = rand() % Difficulty + Difficulty, CodeC = rand() % Difficulty + Difficulty;
 
     int CodeSum = CodeA + CodeB + CodeC;
     int CodeProduct = CodeA * CodeB * CodeC;
@@ -23,7 +27,7 @@ void PlayGame()
     int PlayerGuess;
     int GuessA, GuessB, GuessC;
 
-    std::cout << "\nPlease enter your guess below using a space between each digit e.g X X X.\n";
+    std::cout << "\nPlease enter your guess below using a space between each digit e.g X X X.\n\n";
     std::cin >> GuessA;
     std::cin >> GuessB;
     std::cin >> GuessC;
@@ -33,17 +37,39 @@ void PlayGame()
 
     if (GuessSum == CodeSum && GuessProduct == CodeProduct)
     {
-        std::cout << "\nyou win!";  
+        std::cout << "\n*** Nice job but here comes the next call! ***\n";
+        return true;
     }
     else 
     {
-        std::cout << "\nNice try but you are wrong!";
+        std::cout << "\n*** That is not the correct password, try again! ***\n";
+        return false;
     }
 }
 
 int main()
 {
-    PrintIntroduction();
-    PlayGame();
+    srand(time(NULL)); // Create new random sequence based on time of day
+
+    int LevelDifficulty = 1;
+    int const MaxDifficulty = 5;
+    
+     while (LevelDifficulty <= MaxDifficulty) //Loop game until max level is beaten
+    {
+
+        bool bLevelComplete = PlayGame(LevelDifficulty);
+        std::cin.clear();// Clears any errors
+        std::cin.ignore();//Discards the buffer
+
+        if (bLevelComplete)
+        {
+            // increase level difficulty
+            ++LevelDifficulty;
+        }
+        
+    }
+
+    std::cout << "\n Finally, I am the manager! Mwhahahaha...";
+
     return 0;
 }
